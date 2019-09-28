@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190520154710_Test.cs" />
+    <Compile Remove="Migrations\20190714094315_InitDb.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Copy to Ouput -->
+    <Content Include="Blog.Infrastructure.Data.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="connectionconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Domain\Blog.Domain.csproj" />
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Infrastructure\FrameworkCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Utils\FrameworkCore.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

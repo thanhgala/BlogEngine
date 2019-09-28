@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <environment names="Development">
+        @*<link href="~/Administration/styles.css" rel="stylesheet" />*@
+    </environment>
+    <base href="/Administration/">
+    <base href="/">
+    <title>Blog Admin Page</title>
+</head>
+<body>
+    <app-root>Loading....</app-root>
+
+    <environment names="Development">
+        <script type="text/javascript" src="~/Administration/main.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/Administration/polyfills.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/Administration/runtime.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/Administration/styles.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/Administration/vendor.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Production">
+        <script type="text/javascript" src="~/dist/4.144568bc71e4e9d31885.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/dist/5.e7c5a67a43d75286f1d9.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/dist/6.e6c2555df21f03d1a769.js" asp-append-version="true"></script>
+
+        <script type="text/javascript" src="~/dist/runtime.7d203005ba403147c750.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/dist/polyfills.f6ae3e8b63939c618130.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/dist/main.acfc2c24e638ad5d5287.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>
+
+

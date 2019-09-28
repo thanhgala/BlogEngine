@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+<h2>Home Welcome</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    var identity = (ClaimsIdentity) User.Identity; // Azure AD V2 endpoint specific
+    var name = identity?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+    <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">Hello @name</li>
+        <li><a asp-area="" asp-controller="Home" asp-action="SignOut">Sign out</a></li>
+    </ul>
+    foreach (var claim in identity.Claims)
+     {
+         <h5>@claim</h5>
+     }
+
+}
+
+

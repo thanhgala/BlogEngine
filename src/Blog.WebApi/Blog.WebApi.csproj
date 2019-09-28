@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-Blog.WebApi-4C15B750-E25D-4728-9B3E-13BDC48C5FE1</UserSecretsId>
+    <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="connectionconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="connectionconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Application.Seedwork\Blog.Application.Seedwork.csproj" />
+    <ProjectReference Include="..\Blog.Infrastructure.CrossCutting.IoC\Blog.Infrastructure.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\Blog.Infrastructure.Data\Blog.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Blog.WebApp\Blog.WebApp.csproj" />
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Mapper\FrameworkCore.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>
