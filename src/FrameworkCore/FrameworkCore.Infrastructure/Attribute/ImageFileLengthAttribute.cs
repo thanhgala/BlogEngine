@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-using FrameworkCore.Infrastructure.Common;
 
 namespace FrameworkCore.Infrastructure.Attribute
 {

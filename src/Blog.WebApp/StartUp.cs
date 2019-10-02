@@ -1,5 +1,4 @@
-﻿using Blog.WebApp.Configs;
-using FrameworkCore.Identity.Web;
+﻿using FrameworkCore.Identity.Web;
 using FrameworkCore.Identity.Web.Client.TokenCacheProviders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,13 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using StackifyMiddleware;
 
 namespace Blog.WebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
             Environment = environment;
@@ -22,7 +22,7 @@ namespace Blog.WebApp
 
         public IConfiguration Configuration { get; }
 
-        public IHostingEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,11 +34,11 @@ namespace Blog.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var config = new AzureConfiguration();
-            Configuration.Bind("AzureAD", config);   
-            services.AddSingleton(config);
+            //var config = new AzureConfiguration();
+            //Configuration.Bind("AzureAD", config);   
+            //services.AddSingleton(config);
 
-            services.AddAzureAdV2Authentication(Configuration,Environment)
+            services.AddAzureAdV2Authentication(Configuration)
                 .AddMsal(new[] { "User.Read" })
                 .AddInMemoryTokenCaches();
 
@@ -49,18 +49,18 @@ namespace Blog.WebApp
                 //    .Build();
                 //options.Filters.Add(new AuthorizeFilter(policy));
             })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
-            IApplicationLifetime applicationLifetime)
+            IWebHostEnvironment env,
+            IHostApplicationLifetime applicationLifetime)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -74,11 +74,13 @@ namespace Blog.WebApp
 
             app.UseMiddleware<RequestTracerMiddleware>();
 
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(routes =>
             {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>

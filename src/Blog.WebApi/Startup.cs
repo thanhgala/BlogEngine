@@ -1,6 +1,4 @@
-﻿using System;
-using FrameworkCore.Identity.Web;
-using FrameworkCore.Mapper;
+﻿using FrameworkCore.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,8 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Blog.Infrastructure.CrossCutting.IoC;
+using FrameworkCore.Identity.Web;
+using Microsoft.Extensions.Hosting;
 
 
 namespace Blog.WebApi
@@ -25,7 +24,7 @@ namespace Blog.WebApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
             //    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
@@ -46,7 +45,7 @@ namespace Blog.WebApi
 
             services.AddProtectWebApiWithMicrosoftIdentityPlatformV2(Configuration);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -55,33 +54,32 @@ namespace Blog.WebApi
             //services.AddMediatR(typeof(GetAllBlogsQueryHandler).GetTypeInfo().Assembly);
 
             services.AddAutoMapperCore();
+        }
 
-            var container = new ContainerBuilder();
-            container.Populate(services);
-
-            container.RegisterModule(new InfrastructureLayerInjector());
-            container.RegisterModule(new DomainLayerInjector());
-            container.RegisterModule(new ApplicationLayerInjector());
-
-            return new AutofacServiceProvider(container.Build());
-
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //configure auto fac here
+            builder.RegisterModule(new InfrastructureLayerInjector());
+            builder.RegisterModule(new DomainLayerInjector());
+            builder.RegisterModule(new ApplicationLayerInjector());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        if (env.IsDevelopment())
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseHsts();
-        }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
 
-        app.UseHttpsRedirection();
-        app.UseAuthentication();
-        app.UseMvc();
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
     }
-}
 }

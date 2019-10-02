@@ -3,7 +3,7 @@ using Autofac;
 using Blog.Domain.AggregatesModels.BlogCategories.Queries.GetAllBlogCategories;
 using Blog.Domain.Core.Commands;
 using Blog.Domain.Core.Events;
-using log.Domain.Core.Notification;
+using Blog.Domain.Core.Notification;
 using MediatR;
 using Module = Autofac.Module;
 

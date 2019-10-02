@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,10 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" version="2.2.1" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Domain.Core\Blog.Domain.Core.csproj" />
     <ProjectReference Include="..\Blog.Domain\Blog.Domain.csproj" />
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.Infrastructure\FrameworkCore.Infrastructure.csproj" />
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.Utils\FrameworkCore.Utils.csproj" />

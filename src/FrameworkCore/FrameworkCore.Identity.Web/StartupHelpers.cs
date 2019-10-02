@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FrameworkCore.Identity.Web.Client;
 using FrameworkCore.Identity.Web.Resource;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
@@ -22,9 +21,8 @@ namespace FrameworkCore.Identity.Web
         /// </summary>
         /// <param name="services">Service collection to which to add authentication</param>
         /// <param name="configuration">Configuration</param>
-        /// <param name="environment"></param>
         /// <returns></returns>
-        public static IServiceCollection AddAzureAdV2Authentication(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment environment)
+        public static IServiceCollection AddAzureAdV2Authentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options => configuration.Bind("AzureAd", options))

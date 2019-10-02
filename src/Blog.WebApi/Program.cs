@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using System.IO;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace Blog.WebApi
 {
@@ -14,11 +9,18 @@ namespace Blog.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder
+                        .UseContentRoot(Directory.GetCurrentDirectory())
+                        .UseIISIntegration()
+                        .UseStartup<Startup>();
+                });
     }
 }

@@ -41,7 +41,7 @@ namespace FrameworkCore.Identity.Web.Client.TokenCacheProviders
         {
             var memoryCacheoptions = cacheOptions ?? new MSALMemoryTokenCacheOptions { SlidingExpiration = TimeSpan.FromDays(14) };
 
-            AddInMemoryAppTokenCache(services, memoryCacheoptions);
+            //AddInMemoryAppTokenCache(services, memoryCacheoptions);
             AddInMemoryPerUserTokenCache(services, memoryCacheoptions);
             return services;
         }
@@ -57,9 +57,9 @@ namespace FrameworkCore.Identity.Web.Client.TokenCacheProviders
             services.AddSingleton<IMSALAppTokenCacheProvider>(factory =>
             {
                 var memoryCache = factory.GetRequiredService<IMemoryCache>();
-                var optionsMonitor = factory.GetRequiredService<IOptionsMonitor<AzureADOptions>>();
+                var options = factory.GetRequiredService<IOptions<AzureADOptions>>();
 
-                return new MSALAppMemoryTokenCacheProvider(memoryCache, cacheOptions, optionsMonitor);
+                return new MSALAppMemoryTokenCacheProvider(memoryCache, cacheOptions, options);
             });
 
             return services;

@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Blog.Domain.Core.Events;
+﻿using Blog.Domain.Core.Events;
 using Blog.Domain.Core.Repositories;
 using Blog.Infrastructure.Data.Context;
+using System.Threading.Tasks;
 
 namespace Blog.Infrastructure.Data.Repositories
 {

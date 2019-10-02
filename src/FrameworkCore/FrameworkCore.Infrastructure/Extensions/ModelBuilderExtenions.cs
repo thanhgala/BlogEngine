@@ -43,7 +43,7 @@ namespace FrameworkCore.Infrastructure.Extensions
 
             // Filter mapping types by TDbContext dbSetTypes
             mappingTypes = mappingTypes.Where(x =>
-                dbSetTypes.Any(y => y.FullName == x.BaseType.GetGenericArguments().First().FullName)).ToList();
+                dbSetTypes.Any(y => y.FullName == x.BaseType?.GetGenericArguments().First().FullName)).ToList();
 
             builder.AddConfigFromMappingTypes(mappingTypes);
         }
@@ -81,7 +81,7 @@ namespace FrameworkCore.Infrastructure.Extensions
 
                 // Create the mapping type and do the mapping
                 var mapper = Activator.CreateInstance(mappingType);
-                mapper.GetType().GetMethod("Configure").Invoke(mapper, new[] { entityBuilder });
+                mapper.GetType().GetMethod("Configure")?.Invoke(mapper, new[] { entityBuilder });
             }
         }
 

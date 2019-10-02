@@ -1,18 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AssemblyName>FrameworkCore.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.1" />
-    <PackageReference Include="Refit" Version="4.6.48" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.6" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+    <PackageReference Include="Refit" Version="4.6.48" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authentication.abstractions\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.0.0\ref\netcoreapp3.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features">
+      <HintPath>C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.0.0\ref\netcoreapp3.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Http">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.http\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Http.dll</HintPath>
     </Reference>
@@ -28,6 +42,6 @@
     <Reference Include="System.Security.Permissions">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.security.permissions\4.5.0\ref\netstandard2.0\System.Security.Permissions.dll</HintPath>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>

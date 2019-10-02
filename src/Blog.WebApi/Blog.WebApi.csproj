@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-Blog.WebApi-4C15B750-E25D-4728-9B3E-13BDC48C5FE1</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="2.2.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 

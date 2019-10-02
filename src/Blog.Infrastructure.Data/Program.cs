@@ -1,26 +1,25 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 
 namespace Blog.Infrastructure.Data
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            IWebHost webHost = BuildWebHost(args);
+        //public static void Main(string[] args)
+        //{
+        //    IWebHost webHost = BuildWebHost(args);
 
-            webHost.Run();
-        }
+        //    webHost.Run();
+        //}
 
-        public static IWebHost BuildWebHost(string[] args)
-        {
-            var webHostBuilder = WebHost.CreateDefaultBuilder(args);
+        //public static IWebHost BuildWebHost(string[] args)
+        //{
+        //    var webHostBuilder = WebHost.CreateDefaultBuilder(args);
 
-            webHostBuilder.UseStartup<Startup>();
+        //    webHostBuilder.UseStartup<Startup>();
 
-            var webHost = webHostBuilder.Build();
+        //    var webHost = webHostBuilder.Build();
 
-            return webHost;
-        }
+        //    return webHost;
+        //}
     }
 }

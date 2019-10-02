@@ -58,17 +58,17 @@ namespace FrameworkCore.Identity.Web.Client.TokenCacheProviders
 
         public MSALAppMemoryTokenCacheProvider(IMemoryCache cache,
             MSALMemoryTokenCacheOptions option,
-            IOptionsMonitor<AzureADOptions> azureAdOptionsAccessor)
+            IOptions<AzureADOptions> azureAdOptionsAccessor)
         {
             CacheOptions = option != null ? new MSALMemoryTokenCacheOptions() : null;
 
-            if (azureAdOptionsAccessor.CurrentValue == null 
-                && string.IsNullOrWhiteSpace(azureAdOptionsAccessor.CurrentValue?.ClientId))
+            if (azureAdOptionsAccessor.Value == null 
+                && string.IsNullOrWhiteSpace(azureAdOptionsAccessor.Value?.ClientId))
             {
                 throw new ArgumentNullException(nameof(AzureADOptions), $"The app token cache needs {nameof(AzureADOptions)}, populated with clientId to initialize.");
             }
 
-            AppId = azureAdOptionsAccessor.CurrentValue.ClientId;
+            AppId = azureAdOptionsAccessor.Value.ClientId;
             memoryCache = cache;
         }
 

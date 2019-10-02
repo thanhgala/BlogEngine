@@ -1,9 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Blog.WebApp.Configs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
 namespace Blog.WebApp.Controllers
 {
@@ -14,7 +11,7 @@ namespace Blog.WebApp.Controllers
         {
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
