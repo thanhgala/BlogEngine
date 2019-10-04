@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.4.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
@@ -65,8 +65,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Identity.Web\FrameworkCore.Identity.Web.csproj" />
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.Infrastructure\FrameworkCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Web\FrameworkCore.Web.AzureIdentity\FrameworkCore.Web.AzureIdentity.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

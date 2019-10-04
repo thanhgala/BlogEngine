@@ -1,5 +1,5 @@
-﻿using FrameworkCore.Identity.Web;
-using FrameworkCore.Identity.Web.Client.TokenCacheProviders;
+﻿using FrameworkCore.Web.AzureIdentity;
+using FrameworkCore.Web.AzureIdentity.Client.TokenCacheProviders.InMemory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +27,8 @@ namespace Blog.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -38,8 +40,12 @@ namespace Blog.WebApp
             //Configuration.Bind("AzureAD", config);   
             //services.AddSingleton(config);
 
-            services.AddAzureAdV2Authentication(Configuration)
-                .AddMsal(new[] { "User.Read" })
+            //services.AddAzureAdV2Authentication(Configuration)
+            //    .AddMsal(new[] { "User.Read" })
+            //    .AddInMemoryTokenCaches();
+
+            services.AddMicrosoftIdentityPlatformAuthentication(Configuration)
+                .AddMsal(Configuration, new[] { "User.Read" })
                 .AddInMemoryTokenCaches();
 
             services.AddMvc(options =>

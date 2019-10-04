@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CBCA2ECE-A9B6-464D-ADE7-6058A0756BB4}"
 EndProject
@@ -39,11 +39,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Infrastructure.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Infrastructure.CrossCutting.IoC", "src\Blog.Infrastructure.CrossCutting.IoC\Blog.Infrastructure.CrossCutting.IoC.csproj", "{49A7BF9F-E911-4AEC-B704-D38C5B379C19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkCore.Identity.Web", "src\FrameworkCore\FrameworkCore.Identity.Web\FrameworkCore.Identity.Web.csproj", "{5ADFC649-EF83-4F79-848B-338F8F1D1C65}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkCore.Utils", "src\FrameworkCore\FrameworkCore.Utils\FrameworkCore.Utils.csproj", "{95080420-7E67-4F0A-A4C2-C5291873933D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkCore.Mapper", "src\FrameworkCore\FrameworkCore.Mapper\FrameworkCore.Mapper.csproj", "{E43E545F-E020-42AC-94B9-F922AB260172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkCore.Mapper", "src\FrameworkCore\FrameworkCore.Mapper\FrameworkCore.Mapper.csproj", "{E43E545F-E020-42AC-94B9-F922AB260172}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworkCore.Web", "FrameworkCore.Web", "{F8100BD8-F045-4D19-9582-DCECFBC6C38F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkCore.Web.AzureIdentity", "src\FrameworkCore\FrameworkCore.Web\FrameworkCore.Web.AzureIdentity\FrameworkCore.Web.AzureIdentity.csproj", "{C609AF59-349C-4B10-B4DF-EA5507966048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,10 +89,6 @@ Global
 		{49A7BF9F-E911-4AEC-B704-D38C5B379C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49A7BF9F-E911-4AEC-B704-D38C5B379C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49A7BF9F-E911-4AEC-B704-D38C5B379C19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5ADFC649-EF83-4F79-848B-338F8F1D1C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ADFC649-EF83-4F79-848B-338F8F1D1C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ADFC649-EF83-4F79-848B-338F8F1D1C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ADFC649-EF83-4F79-848B-338F8F1D1C65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95080420-7E67-4F0A-A4C2-C5291873933D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95080420-7E67-4F0A-A4C2-C5291873933D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95080420-7E67-4F0A-A4C2-C5291873933D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +97,10 @@ Global
 		{E43E545F-E020-42AC-94B9-F922AB260172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E43E545F-E020-42AC-94B9-F922AB260172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43E545F-E020-42AC-94B9-F922AB260172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C609AF59-349C-4B10-B4DF-EA5507966048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C609AF59-349C-4B10-B4DF-EA5507966048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C609AF59-349C-4B10-B4DF-EA5507966048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C609AF59-349C-4B10-B4DF-EA5507966048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,9 +122,10 @@ Global
 		{A10B578A-5B2B-46F4-B3CD-5D9E4CC287A9} = {D77B93FE-7C2F-425B-B33B-3A3563E2A61A}
 		{23E89B7B-514B-4592-95A1-62AB0A7B7544} = {4BDFBCC4-89FC-4420-87CE-48580EB8882F}
 		{49A7BF9F-E911-4AEC-B704-D38C5B379C19} = {C278568C-F52D-4BD7-970C-2AED7E2B9457}
-		{5ADFC649-EF83-4F79-848B-338F8F1D1C65} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
 		{95080420-7E67-4F0A-A4C2-C5291873933D} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
 		{E43E545F-E020-42AC-94B9-F922AB260172} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
+		{F8100BD8-F045-4D19-9582-DCECFBC6C38F} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
+		{C609AF59-349C-4B10-B4DF-EA5507966048} = {F8100BD8-F045-4D19-9582-DCECFBC6C38F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {307708DF-B173-477A-AA16-30EF6CAF304D}

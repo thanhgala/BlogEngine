@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FrameworkCore.Identity.Web.Client;
+using FrameworkCore.Web.AzureIdentity.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ITokenAcquisition = FrameworkCore.Identity.Web.Client.ITokenAcquisition;
+using ITokenAcquisition = FrameworkCore.Web.AzureIdentity.Client.ITokenAcquisition;
 
 namespace Blog.WebApp.Controllers
 {
@@ -30,7 +30,7 @@ namespace Blog.WebApp.Controllers
                 return View();
             }
 
-            var accessToken = await _tokenAcquisition.GetAccessTokenOnBehalfOfUser(HttpContext, scopes);
+            var accessToken = await _tokenAcquisition.GetAccessTokenOnBehalfOfUserAsync(scopes);
 
             foreach (var claim in User.Claims)
             {

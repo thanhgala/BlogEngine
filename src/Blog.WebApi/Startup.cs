@@ -8,9 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Autofac;
 using Blog.Infrastructure.CrossCutting.IoC;
-using FrameworkCore.Identity.Web;
 using Microsoft.Extensions.Hosting;
-
+using FrameworkCore.Web.AzureIdentity;
+using Microsoft.Identity.Web;
 
 namespace Blog.WebApi
 {
@@ -26,24 +26,9 @@ namespace Blog.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-            //    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+            //services.AddProtectWebApiWithMicrosoftIdentityPlatformV2(Configuration);
 
-            //services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationScheme, options =>
-            //{
-            //    options.Authority += "/v2.0";
-
-            //    // The valid audiences are both the Client ID (options.Audience) and api://{ClientID}
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidAudiences = new[] {options.Audience, $"api://{options.Audience}"}
-            //    };
-
-            //    // If you want to debug, or just understand the JwtBearer events, uncomment the following line of code
-            //    // options.Events = JwtBearerMiddlewareDiagnostics.Subscribe(options.Events);
-            //});
-
-            services.AddProtectWebApiWithMicrosoftIdentityPlatformV2(Configuration);
+            services.AddProtectedWebApi(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
@@ -79,6 +64,7 @@ namespace Blog.WebApi
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
