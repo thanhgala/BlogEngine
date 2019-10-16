@@ -12,7 +12,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using FrameworkCore.Web.AzureIdentity.Client;
 using FrameworkCore.Web.AzureIdentity.Resource;
-using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FrameworkCore.Web.AzureIdentity

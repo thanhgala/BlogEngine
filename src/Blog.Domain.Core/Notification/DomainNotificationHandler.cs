@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Blog.Domain.Core.Events;
+using MediatR;
 
 namespace Blog.Domain.Core.Notification
 {
     /// <summary>
     /// Class DomainNotificationHandler.
     /// </summary>
-    public class DomainNotificationHandler : IEventHandler<DomainNotification>
+    public class DomainNotificationHandler : INotificationHandler<DomainNotification>
     {
         /// <summary>
         /// The notifications
@@ -49,7 +50,7 @@ namespace Blog.Domain.Core.Notification
         /// <returns><c>true</c> if this instance has notifications; otherwise, <c>false</c>.</returns>
         public virtual bool HasNotifications()
         {
-            return Notifications.Count <= 0;
+            return Notifications.Any();
         }
 
         /// <summary>

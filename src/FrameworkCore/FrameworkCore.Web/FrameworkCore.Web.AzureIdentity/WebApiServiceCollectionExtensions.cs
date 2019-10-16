@@ -15,11 +15,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using FrameworkCore.Web.AzureIdentity;
 using FrameworkCore.Web.AzureIdentity.Client;
 using FrameworkCore.Web.AzureIdentity.Resource;
 
-namespace Microsoft.Identity.Web
+namespace FrameworkCore.Web.AzureIdentity
 {
     /// <summary>
     /// Extensions for IServiceCollection for startup initialization of Web APIs.
@@ -58,7 +57,7 @@ namespace Microsoft.Identity.Web
                 options.Authority += "/v2.0";
 
                 // The valid audiences are both the Client ID (options.Audience) and api://{ClientID}
-                options.TokenValidationParameters.ValidAudiences = new string[]
+                options.TokenValidationParameters.ValidAudiences = new[]
                 {
                     options.Audience, $"api://{options.Audience}"
                 };
@@ -75,20 +74,23 @@ namespace Microsoft.Identity.Web
 
                 // When an access token for our own Web API is validated, we add it to MSAL.NET's cache so that it can
                 // be used from the controllers.
-                options.Events = new JwtBearerEvents();
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        // This check is required to ensure that the Web API only accepts tokens from tenants where it has been consented and provisioned.
+                        if (context.Principal.Claims.All(x => x.Type != ClaimConstants.Scope)
+                            && context.Principal.Claims.All(y => y.Type != ClaimConstants.Scp)
+                            && context.Principal.Claims.All(y => y.Type != ClaimConstants.Roles))
+                        {
+                            throw new UnauthorizedAccessException(
+                                "Neither scope or roles claim was found in the bearer token.");
+                        }
 
-                options.Events.OnTokenValidated = async context =>
-                   {
-                       // This check is required to ensure that the Web API only accepts tokens from tenants where it has been consented and provisioned.
-                       if (context.Principal.Claims.All(x => x.Type != ClaimConstants.Scope)
-                        && context.Principal.Claims.All(y => y.Type != ClaimConstants.Scp)
-                        && context.Principal.Claims.All(y => y.Type != ClaimConstants.Roles))
-                       {
-                           throw new UnauthorizedAccessException("Neither scope or roles claim was found in the bearer token.");
-                       }
+                        await Task.FromResult(0);
+                    }
+                };
 
-                       await Task.FromResult(0);
-                   };
 
                 if (subscribeToJwtBearerMiddlewareDiagnosticsEvents)
                 {

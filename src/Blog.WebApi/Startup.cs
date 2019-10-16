@@ -8,9 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Autofac;
 using Blog.Infrastructure.CrossCutting.IoC;
-using Microsoft.Extensions.Hosting;
 using FrameworkCore.Web.AzureIdentity;
-using Microsoft.Identity.Web;
+using Microsoft.Extensions.Hosting;
+using FrameworkCore.Web.ApiResponseWrapper;
 
 namespace Blog.WebApi
 {
@@ -35,8 +35,6 @@ namespace Blog.WebApi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddMediatR(typeof(Startup));
-
-            //services.AddMediatR(typeof(GetAllBlogsQueryHandler).GetTypeInfo().Assembly);
 
             services.AddAutoMapperCore();
         }
@@ -65,6 +63,10 @@ namespace Blog.WebApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseApiResponseAndExceptionWrapper(new ApiResponseWrapperOptions
+                { ShowApiVersion = true, ShowStatusCode = true, ApiVersion = "1.0.0" });
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

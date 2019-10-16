@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworkCore.Web", "Framew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkCore.Web.AzureIdentity", "src\FrameworkCore\FrameworkCore.Web\FrameworkCore.Web.AzureIdentity\FrameworkCore.Web.AzureIdentity.csproj", "{C609AF59-349C-4B10-B4DF-EA5507966048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkCore.Web.ApiResponseWrapper", "src\FrameworkCore\FrameworkCore.Web\FrameworkCore.Web.ApiResponseWrapper\FrameworkCore.Web.ApiResponseWrapper.csproj", "{6D4E3E51-817E-44C0-AFA7-8318B43ABC29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{C609AF59-349C-4B10-B4DF-EA5507966048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C609AF59-349C-4B10-B4DF-EA5507966048}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C609AF59-349C-4B10-B4DF-EA5507966048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4E3E51-817E-44C0-AFA7-8318B43ABC29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4E3E51-817E-44C0-AFA7-8318B43ABC29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4E3E51-817E-44C0-AFA7-8318B43ABC29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4E3E51-817E-44C0-AFA7-8318B43ABC29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{E43E545F-E020-42AC-94B9-F922AB260172} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
 		{F8100BD8-F045-4D19-9582-DCECFBC6C38F} = {1EA9841B-53AD-478D-9AEF-EC1123DE8401}
 		{C609AF59-349C-4B10-B4DF-EA5507966048} = {F8100BD8-F045-4D19-9582-DCECFBC6C38F}
+		{6D4E3E51-817E-44C0-AFA7-8318B43ABC29} = {F8100BD8-F045-4D19-9582-DCECFBC6C38F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {307708DF-B173-477A-AA16-30EF6CAF304D}

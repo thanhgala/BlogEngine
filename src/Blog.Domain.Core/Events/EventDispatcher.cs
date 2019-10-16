@@ -1,19 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : FrederickNguyen.DomainCore
-// Author           : thangnd
-// Created          : 07-09-2018
-//
-// Last Modified By : thangnd
-// Last Modified On : 07-09-2018
-// ***********************************************************************
-// <copyright file="EventDispatcher.cs" company="FrederickNguyen.DomainCore">
-//     Copyright (c) by adguard. All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 
 namespace Blog.Domain.Core.Events

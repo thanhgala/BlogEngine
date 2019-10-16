@@ -2,10 +2,11 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrameworkCore.Infrastructure.DAL
 {
-    public interface IUnitOfWork<TContext> : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         /// <summary>
         /// Begins the transaction.
@@ -22,7 +23,7 @@ namespace FrameworkCore.Infrastructure.DAL
         /// <summary>
         /// Commits the changes.
         /// </summary>
-        Task CommitChangesAsync();
+        Task<bool> CommitChangesAsync();
 
         /// <summary>
         /// Rollbacks the transaction.

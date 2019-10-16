@@ -9,6 +9,7 @@ namespace Blog.Application.MappingConfigurations
     {
         public MappingEntityToDtoProfile()
         {
+            //entity -> dto
             CreateMap<BlogCategoryEntity, BlogCategoryDto>()
                 .IgnoreAllNonExisting();
         }

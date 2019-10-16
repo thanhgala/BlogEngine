@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrameworkCore.Infrastructure.DAL
 {
-    public class UnitOfWork<TContext> : IUnitOfWork<TContext>
+    public class UnitOfWork<TContext> : IUnitOfWork
         where TContext : DbContext
     {
         #region Fields
@@ -45,10 +45,10 @@ namespace FrameworkCore.Infrastructure.DAL
             _context.SaveChanges();
         }
 
-        public virtual async Task CommitChangesAsync()
+        public virtual async Task<bool> CommitChangesAsync()
         {
-            CommitTransaction();
-            await _context.SaveChangesAsync();
+            //CommitTransaction();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         private void CommitTransaction()

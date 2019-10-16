@@ -26,6 +26,7 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
     <ProjectReference Include="..\Blog.Infrastructure.Data\Blog.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\Blog.WebApp\Blog.WebApp.csproj" />
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.Mapper\FrameworkCore.Mapper.csproj" />
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.Web\FrameworkCore.Web.ApiResponseWrapper\FrameworkCore.Web.ApiResponseWrapper.csproj" />
   </ItemGroup>
 
 </Project>

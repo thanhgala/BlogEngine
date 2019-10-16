@@ -144,19 +144,36 @@ namespace FrameworkCore.Web.AzureIdentity
                 // Handling the auth redemption by MSAL.NET so that a token is available in the token cache
                 // where it will be usable from Controllers later (through the TokenAcquisition service)
                 var handler = options.Events.OnAuthorizationCodeReceived;
-                options.Events.OnAuthorizationCodeReceived = async context =>
+                options.Events = new OpenIdConnectEvents
                 {
-                    var tokenAcquisition = context.HttpContext.RequestServices.GetRequiredService<ITokenAcquisition>();
-                    await tokenAcquisition.AddAccountToCacheFromAuthorizationCodeAsync(context, options.Scope).ConfigureAwait(false);
-                    await handler(context).ConfigureAwait(false);
-                };
+                    OnAuthorizationCodeReceived = async context =>
+                    {
+                        var tokenAcquisition = context.HttpContext.RequestServices.GetRequiredService<ITokenAcquisition>();
+                        await tokenAcquisition.AddAccountToCacheFromAuthorizationCodeAsync(context, options.Scope).ConfigureAwait(false);
+                        await handler(context).ConfigureAwait(false);
+                    },
 
-                // Handling the sign-out: removing the account from MSAL.NET cache
-                options.Events.OnRedirectToIdentityProviderForSignOut = async context =>
-                {
-                    // Remove the account from MSAL.NET token cache
-                    var tokenAcquisition = context.HttpContext.RequestServices.GetRequiredService<ITokenAcquisition>();
-                    await tokenAcquisition.RemoveAccountAsync(context).ConfigureAwait(false);
+                    // Handling the sign-out: removing the account from MSAL.NET cache
+                    OnRedirectToIdentityProviderForSignOut = async context =>
+                    {
+                        //Remove the account from MSAL.NET token cache
+                        var tokenAcquisition = context.HttpContext.RequestServices.GetRequiredService<ITokenAcquisition>();
+                        await tokenAcquisition.RemoveAccountAsync(context).ConfigureAwait(false);
+                    },
+
+                    OnAuthenticationFailed = context =>
+                    {
+                        context.Response.Redirect("/Error/AccessDenied");
+                        context.HandleResponse();
+                        return Task.CompletedTask;
+                    },
+
+                    OnRemoteFailure = context =>
+                    {
+                        context.Response.Redirect("/Error/AccessDenied");
+                        context.HandleResponse();
+                        return Task.FromResult(0);
+                    }
                 };
             });
             return services;
